@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Color set for buttons -->
+        <item name="button" type="color">#689f38</item>
+        <item name="button_pressed" type="color">#76ff03</item>
+        <item name="button_pressed_border" type="color">#76ff03</item>
+
+    <!-- Array with the colors -->
+        <integer-array name="androidcolors_2">
+            <item>@color/button</item>
+            <item>@color/button_pressed</item>
+            <item>@color/button_pressed_border</item>
+        </integer-array>
+</resources>

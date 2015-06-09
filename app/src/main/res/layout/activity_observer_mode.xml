@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@drawable/bg_light"
+    tools:context=".ObserverMode">
+
+    <!-- Linear layout to hold the text boxes in top side -->
+    <LinearLayout
+        android:id="@+id/GpsLayoutTopButtons"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+
+        <!-- TextViews to show the name selected -->
+        <TextView android:id="@+id/gps_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="@string/name"
+            android:textStyle="bold"/>
+
+        <TextView android:id="@+id/gps_name_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp" />
+
+        <!-- TextViews to show the comment wrote -->
+        <TextView android:id="@+id/gps_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="5dp"
+            android:text="@string/newtrack_comments"
+            android:textStyle="bold"/>
+
+        <TextView android:id="@+id/gps_comment_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp" />
+
+        <TextView android:id="@+id/gps_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="@string/gps_location"
+            android:textStyle="bold"/>
+
+        <TextView android:id="@+id/gps_location_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp" />
+
+    </LinearLayout>
+
+    <!-- LinearLayout to fit the bottom buttons to manage the GPS start or stop -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton android:id="@+id/newtrack_play"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:onClick="start"
+            android:src="@drawable/ic_action_play"/>
+
+        <ImageButton android:id="@+id/newtrack_pause"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:onClick="pauseLocation"
+            android:src="@drawable/ic_action_pause_false"/>
+
+        <ImageButton android:id="@+id/newtrack_stop"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:onClick="stopLocation"
+            android:src="@drawable/ic_action_stop_false"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

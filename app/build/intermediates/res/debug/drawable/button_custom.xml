@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- This xml define a custom button look to the app buttons -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/button_pressed"
+        android:state_pressed="true">
+        <stroke android:width="5px" android:color="@color/button_pressed_border" />
+    </item>
+    <item android:drawable="@color/button" />
+</selector><!-- From: file:/C:/Users/Mark/AndroidStudioProjects/SMI/app/src/main/res/drawable/button_custom.xml -->

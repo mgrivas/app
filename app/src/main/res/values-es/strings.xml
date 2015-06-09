@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- strings to name the app and activities -->
+        <string name="app_name">SMI</string>
+
+    <!-- strings for language -->
+        <string name="action_language">Idioma</string>
+        <string name="lang_tittle">Elija el idioma:</string>
+
+    <!-- This is the array with the availables languages -->
+        <string-array name="androidlanguages">
+            <item name="en">Inglés</item>
+            <item name="es">Español</item>
+        </string-array>
+
+    <!-- strings for the Main activity -->
+        <string name="new_track">Nuevo Recorrido</string>
+        <string name="observer">Modo Observador</string>
+        <string name="list_track">Listar Recorridos</string>
+        <string name="show_map">Mostrar Mapa de Polen</string>
+
+    <!-- strings for the NewTrack activity -->
+        <string name="name">Nombre:</string>
+        <string name="newtrack_comments">Comentarios:</string>
+        <string name="nextGoogle">Usar Google Services -></string>
+        <string name="nextGps">Usar Gps -></string>
+        <string name="name_empty">El campo nombre no puede estar vacío</string>
+
+    <!-- strings for the GpsController activity -->
+    <string name="gps_location">Tu posición es:</string>
+    <string name="not_supported">El dispositivo no posee Google Play Services.</string>
+    <string name="still_activating">Gps aún activándose, vuelva a intentarlo otra vez.</string>
+    <string name="paused">Recorrido pausado.</string>
+    <string name="ready">Gps listo. Por favor pulse start.</string>
+    <string name="changed">Posicion cambiada!</string>
+    <string name="gps_wait">Por favor espere unos segundos, configurando gps.</string>
+
+    <!-- strings for the FinalTrack activity -->
+    <string name="final_location">Has pasado por:</string>
+    <string name="cancel_track">Cancelar</string>
+    <string name="accept_track">Finalizar</string>
+
+
+
+
+
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hola que tal!!!</string>
+    <string name="track">Recorrido</string>
+    <string name="newtrack_date">Fecha comienzo:</string>
+    <string name="newtrack_hour">Hora comienzo:</string>
+    <string name="not_get_location">(No se ha podido obtener la posición. Asegúrese de que la opción "permitir obtener mi posición" está
+        activada en el dispositivo)</string>
+    <string name="pollen">Polen a tu alrededor</string>
+    <string name="list_track_name">Recorridos existentes: </string>
+
+
+</resources>

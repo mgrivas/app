@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.mark.smi"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="21" />
+
+    <permission
+        android:name="com.example.mark.smi.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <!--
+         Se requerirá una etiqueda <uses-feature android:name="" android:required="" para el uso de
+        Distintos servicios, como puede ser sms o el gps
+    -->
+
+    <uses-permission android:name="com.example.mark.smi.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- Permissions to can use the GPS -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+        <!-- Needed for google maps -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <!-- Main activity -->
+        <activity
+            android:name="com.example.mark.smi.MainController"
+            android:configChanges="locale|orientation"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.mark.smi.NewTrackController"
+            android:configChanges="locale|orientation"
+            android:label="@string/app_name"
+            android:parentActivityName="com.example.mark.smi.MainController" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".NewTrackController" />
+        </activity>
+        <activity
+            android:name="com.example.mark.smi.GoogleController"
+            android:configChanges="locale|orientation"
+            android:label="@string/app_name"
+            android:parentActivityName="com.example.mark.smi.NewTrackController" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".GoogleController" />
+        </activity>
+        <activity
+            android:name="com.example.mark.smi.GpsController"
+            android:configChanges="locale|orientation"
+            android:label="@string/app_name"
+            android:parentActivityName="com.example.mark.smi.NewTrackController" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainController" />
+        </activity>
+        <activity
+            android:name="com.example.mark.smi.ListActivity"
+            android:label="@string/title_activity_list"
+            android:parentActivityName="com.example.mark.smi.MainController" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainController" />
+        </activity>
+        <activity
+            android:name="com.example.mark.smi.ShowMapActivity"
+            android:label="Mapa"
+            android:parentActivityName="com.example.mark.smi.MainController" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainController" />
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCSdndvwfByswyzuQTWXvI4puC5_e3WQ0o" />
+
+        <activity
+            android:name="com.example.mark.smi.FinalTrack"
+            android:label="@string/title_activity_final_track"
+            android:parentActivityName="com.example.mark.smi.GoogleController" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainController" />
+        </activity>
+        <activity
+            android:name="com.example.mark.smi.Observer"
+            android:label="@string/title_activity_observer"
+            android:parentActivityName="com.example.mark.smi.MainController" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainController" />
+        </activity>
+        <activity
+            android:name="com.example.mark.smi.DetailedList"
+            android:label="@string/title_activity_detailed_list"
+            android:parentActivityName="com.example.mark.smi.ListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainController" />
+        </activity>
+        <activity
+            android:name="com.example.mark.smi.ObserverMode"
+            android:label="@string/title_activity_observer_mode"
+            android:parentActivityName="com.example.mark.smi.Observer" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainController" />
+        </activity>
+        <activity
+            android:name="com.example.mark.smi.GetFile"
+            android:label="@string/title_activity_get_file" >
+        </activity>
+        <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
+        <activity
+            android:name="com.google.android.gms.ads.purchase.InAppPurchaseActivity"
+            android:theme="@style/Theme.IAPTheme" />
+
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
+
+        <receiver
+            android:name="com.google.android.gms.wallet.EnableWalletOptimizationReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.gms.wallet.ENABLE_WALLET_OPTIMIZATION" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

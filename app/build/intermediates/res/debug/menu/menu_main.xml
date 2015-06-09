@@ -1,0 +1,11 @@
+<!-- File to place the action bar with the action buttons -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+    <!-- Button for language -->
+    <item android:id="@+id/action_language" android:title="@string/action_language"
+        android:icon="@drawable/ic_action_language"
+        android:orderInCategory="100" app:showAsAction="ifRoom" />
+</menu>
+<!-- From: file:/C:/Users/Mark/AndroidStudioProjects/SMI/app/src/main/res/menu/menu_main.xml -->
