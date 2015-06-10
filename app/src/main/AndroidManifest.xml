@@ -101,7 +101,7 @@
             android:value="AIzaSyCSdndvwfByswyzuQTWXvI4puC5_e3WQ0o" />
 
         <activity
-            android:name=".FinalTrack"
+            android:name=".FinalTrackController"
             android:label="@string/title_activity_final_track"
             android:parentActivityName=".GoogleController" >
             <meta-data

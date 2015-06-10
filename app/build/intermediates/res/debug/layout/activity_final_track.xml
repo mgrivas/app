@@ -61,8 +61,10 @@
 
         <ListView
             android:id="@+id/list_point"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp" />
 
     </LinearLayout>
 
@@ -72,25 +74,24 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:layout_centerVertical="true">
-
-        <!-- Button: cancel track -->
-        <Button android:id="@+id/button_cancel_final"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_custom"
-            android:text="@string/cancel_track"
-            android:onClick="Cancel"/>
+        android:orientation="vertical">
 
         <!-- Button: accept track -->
         <Button android:id="@+id/button_accept_final"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:background="@drawable/button_custom"
             android:text="@string/accept_track"
             android:onClick="Accept"/>
+
+        <!-- Button: cancel track -->
+        <Button android:id="@+id/button_cancel_final"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button_custom"
+            android:text="@string/cancel_track"
+            android:onClick="Cancel"/>
 
     </LinearLayout>
 

@@ -1,12 +1,10 @@
 package com.example.mark.smi;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -14,7 +12,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.text.format.Time;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -22,7 +19,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 //This activity is the controller for the activity_gps layout using Gps service
-public class GpsController extends Activity {
+public class GpsController extends com.example.mark.smi.Menu {
     GpsTracker gps;
 
     //Global variables
@@ -82,7 +79,6 @@ public class GpsController extends Activity {
         btn_start.setImageResource(R.drawable.ic_action_play_false);
 
         gps.getLocation();
-
     }
 
     //Pause the location updates
@@ -100,7 +96,7 @@ public class GpsController extends Activity {
     public void stop(View view) {
         gps.stopUsingGPS();
 
-        Intent intent = new Intent(this, FinalTrack.class);
+        Intent intent = new Intent(this, FinalTrackController.class);
         intent.putExtra(MESSAGE_NAME, name_selected);
         intent.putExtra(MESSAGE_COMMENT, comment_selected);
         intent.putParcelableArrayListExtra("points", points);
@@ -140,7 +136,6 @@ public class GpsController extends Activity {
 
         public GpsTracker(Context context) {
             this.mContext = context;
-            getLocation();
         }
 
         public Location getLocation() {
@@ -166,7 +161,6 @@ public class GpsController extends Activity {
                                 LocationManager.NETWORK_PROVIDER,
                                 MIN_TIME_BW_UPDATES,
                                 MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-                        Log.d("Network", "Network");
                         if (locationManager != null) {
                             location = locationManager
                                     .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
@@ -183,7 +177,6 @@ public class GpsController extends Activity {
                                     LocationManager.GPS_PROVIDER,
                                     MIN_TIME_BW_UPDATES,
                                     MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-                            Log.d("GPS Enabled", "GPS Enabled");
                             if (locationManager != null) {
                                 location = locationManager
                                         .getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -203,19 +196,13 @@ public class GpsController extends Activity {
             return location;
         }
 
-        /**
-         * Stop using GPS listener
-         * Calling this function will stop using GPS in your app
-         * */
+        //Stop the GPS
         public void stopUsingGPS(){
             if(locationManager != null){
                 locationManager.removeUpdates(GpsTracker.this);
             }
         }
 
-        /**
-         * Function to get latitude
-         * */
         public double getLatitude(){
             if(location != null){
                 latitude = location.getLatitude();
@@ -225,30 +212,17 @@ public class GpsController extends Activity {
             return latitude;
         }
 
-        /**
-         * Function to get longitude
-         * */
         public double getLongitude(){
             if(location != null){
                 longitude = location.getLongitude();
             }
-
-            // return longitude
             return longitude;
         }
 
-        /**
-         * Function to check GPS/wifi enabled
-         * @return boolean
-         * */
         public boolean canGetLocation() {
             return this.canGetLocation;
         }
 
-        /**
-         * Function to show settings alert dialog
-         * On pressing Settings button will lauch Settings Options
-         * */
         public void showSettingsAlert(){
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
 
@@ -277,6 +251,7 @@ public class GpsController extends Activity {
             alertDialog.show();
         }
 
+        //What to do when the location change
         @Override
         public void onLocationChanged(Location location) {
             if (flag == 0) {
@@ -284,12 +259,11 @@ public class GpsController extends Activity {
                 flag = 1;
                 stopUsingGPS();
             } else {
-
                 if (gps.canGetLocation()) {
-                    latitude = gps.getLatitude();
-                    longitude = gps.getLongitude();
+                    latitude = location.getLatitude();
+                    longitude = location.getLongitude();
 
-                    Toast.makeText(mContext, "Location changed!",
+                    Toast.makeText(mContext, R.string.changed,
                             Toast.LENGTH_SHORT).show();
 
                     Time today = new Time(Time.getCurrentTimezone());
@@ -298,14 +272,15 @@ public class GpsController extends Activity {
                     if (today.minute < 10) {
                         minuto = "0" + today.minute;
                     }
-                    String time = today.hour + ":" + minuto;
-                    Point p = new Point(latitude, longitude, time);
+                    String hora = Integer.toString(today.hour);
+                    if (today.hour < 10) {
+                        hora = "0" + today.hour;
+                    }
+                    String time = hora + ":" + minuto;
+                    Point p = new Point(latitude, longitude, today.hour,today.minute);
                     addPoint(p);
-                    actual_location.setText("Hora: " + today.hour + ":" + today.minute + "\nLat: " + latitude + ", Long: " + longitude);
+                    actual_location.setText("Hora: " + time + "\nLat: " + latitude + ", Long: " + longitude);
                 } else {
-                    // can't get location
-                    // GPS or Network is not enabled
-                    // Ask user to enable GPS/network in settings
                     gps.showSettingsAlert();
                 }
             }

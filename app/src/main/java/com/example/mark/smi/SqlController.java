@@ -18,7 +18,8 @@ public class SqlController extends SQLiteOpenHelper {
     public static final String COLUMN_LATITUDE = "latitude";
     public static final String COLUMN_LONGITUDE = "longitude";
     public static final String COLUMN_TRACK_ID = "track_id";
-    public static final String COLUMN_TIME = "time";
+    public static final String COLUMN_HOUR = "hour";
+    public static final String COLUMN_MINUTE = "minute";
 
     public static final String TABLE_POLEN = "polen";
     public static final String COLUMN_POLEN_ID = "_id";
@@ -26,7 +27,7 @@ public class SqlController extends SQLiteOpenHelper {
     public static final String COLUMN_DESC = "description";
 
     private static final String DATABASE_NAME = "smi.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     // Database creation sql statement
     private static final String DATABASE_CREATE_1 = "create table "
@@ -40,7 +41,8 @@ public class SqlController extends SQLiteOpenHelper {
             + " integer primary key autoincrement, " + COLUMN_LATITUDE
             + " text not null, " + COLUMN_LONGITUDE
             + " text not null, " + COLUMN_TRACK_ID
-            + " text not null, " + COLUMN_TIME
+            + " text not null, " + COLUMN_HOUR
+            + " text not null, " + COLUMN_MINUTE
             + " text not null );";
 
     private static final String DATABASE_CREATE_3 = "create table "

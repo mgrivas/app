@@ -1,25 +1,23 @@
 package com.example.mark.smi;
 
-import android.content.ClipData;
-import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import java.util.ArrayList;
 
 public class Point implements Parcelable {
     private int id;
     private double latitude;
     private double longitude;
-    private String time;
+    private int hour;
+    private int minute;
     private int track_id;
 
-    public Point(double lat, double longitude, String t) {
+    public Point(double lat, double longitude, int h, int m) {
         this.latitude = lat;
         this.longitude = longitude;
         this.id = 0;
         this.track_id = 0;
-        this.time = t;
+        this.hour = h;
+        this.minute = m;
     }
 
     public Point(Parcel in) {
@@ -27,7 +25,8 @@ public class Point implements Parcelable {
         latitude = in.readDouble();
         longitude = in.readDouble();
         track_id = in.readInt();
-        time = in.readString();
+        hour = in.readInt();
+        minute = in.readInt();
     }
 
     public int getId() {
@@ -38,13 +37,13 @@ public class Point implements Parcelable {
         this.id = id;
     }
 
-    public String getTime() {
-        return time;
-    }
+    public int getHour() { return hour;}
 
-    public void setTime(String time) {
-        this.time = time;
-    }
+    public void setHour(int h) {this.hour = h;}
+
+    public int getMinute() { return minute;}
+
+    public void setMinute(int m) {this.minute = m;}
 
     public int getTrackId() { return track_id;}
 
@@ -71,7 +70,7 @@ public class Point implements Parcelable {
     // Will be used by the ArrayAdapter in the ListView
     @Override
     public String toString() {
-        String toret = "A hora: " + this.time + " - Punto: latitud " + this.latitude + " y longitud " + this.longitude;
+        String toret = "A hora: " + this.hour + ":" + this.minute + " - Punto: latitud " + this.latitude + " y longitud " + this.longitude;
         return toret;
     }
 
@@ -85,7 +84,8 @@ public class Point implements Parcelable {
         dest.writeDouble(latitude);
         dest.writeDouble(longitude);
         dest.writeInt(track_id);
-        dest.writeString(time);
+        dest.writeInt(hour);
+        dest.writeInt(minute);
     }
 
     public static final Parcelable.Creator<Point> CREATOR = new Parcelable.Creator<Point>()

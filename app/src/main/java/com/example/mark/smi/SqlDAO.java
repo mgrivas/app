@@ -23,7 +23,8 @@ public class SqlDAO {
             SqlController.COLUMN_LATITUDE,
             SqlController.COLUMN_LONGITUDE,
             SqlController.COLUMN_TRACK_ID,
-            SqlController.COLUMN_TIME };
+            SqlController.COLUMN_HOUR,
+            SqlController.COLUMN_MINUTE };
 
     private String[] allColumns_polen = { SqlController.COLUMN_POLEN_ID,
             SqlController.COLUMN_POLEN_NAME,
@@ -64,7 +65,8 @@ public class SqlDAO {
         values.put(SqlController.COLUMN_LATITUDE, point.getLatitude());
         values.put(SqlController.COLUMN_LONGITUDE, point.getLongitude());
         values.put(SqlController.COLUMN_TRACK_ID, point.getTrackId());
-        values.put(SqlController.COLUMN_TIME, point.getTime());
+        values.put(SqlController.COLUMN_HOUR, point.getHour());
+        values.put(SqlController.COLUMN_MINUTE, point.getMinute());
         long insertId = database.insert(SqlController.TABLE_POINTS, null, values);
 
 
@@ -159,7 +161,7 @@ public class SqlDAO {
     }
 
     private Point cursorToPoint(Cursor cursor) {
-        Point point = new Point(cursor.getDouble(1),cursor.getDouble(2),cursor.getString(4));
+        Point point = new Point(cursor.getDouble(1),cursor.getDouble(2),cursor.getInt(4),cursor.getInt(5));
         point.setId(cursor.getInt(0));
         point.setTrackId(cursor.getInt(3));
         return point;

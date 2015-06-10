@@ -10,8 +10,6 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 import android.content.Intent;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.text.format.Time;
@@ -21,10 +19,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 //This activity is the controller for the activity_gps layout using Google Play Services
 public class GoogleController extends com.example.mark.smi.Menu implements ConnectionCallbacks,
@@ -37,7 +32,7 @@ public class GoogleController extends com.example.mark.smi.Menu implements Conne
     // Location updates intervals in sec
     private static int UPDATE_INTERVAL = 60000; // 60 sec
     private static int FATEST_INTERVAL = 10000; // 10 sec
-    private static int DISPLACEMENT = 50; // 50 meters
+    private static int DISPLACEMENT = 0; // 0 to disable the displacement
     // boolean flag to toggle periodic location updates
     private boolean mRequestingLocationUpdates = false;
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
@@ -227,7 +222,7 @@ public class GoogleController extends com.example.mark.smi.Menu implements Conne
 
         stopLocation();
 
-        Intent intent = new Intent(this, FinalTrack.class);
+        Intent intent = new Intent(this, FinalTrackController.class);
         //Bundle bundle = new Bundle();
         intent.putExtra(MESSAGE_NAME, name_selected);
         intent.putExtra(MESSAGE_COMMENT, comment_selected);
@@ -256,8 +251,12 @@ public class GoogleController extends com.example.mark.smi.Menu implements Conne
             today.setToNow();
             String minuto = Integer.toString(today.minute);
             if (today.minute < 10) { minuto = "0" + today.minute; }
-            String time = today.hour + ":" + minuto;
-            Point p = new Point(mLastLocation.getLatitude(),mLastLocation.getLongitude(),time);
+            String hora = Integer.toString(today.hour);
+            if (today.hour < 10) {
+                hora = "0" + today.hour;
+            }
+            String time = hora + ":" + minuto;
+            Point p = new Point(mLastLocation.getLatitude(),mLastLocation.getLongitude(),today.hour,today.minute);
             addPoint(p);
 
             actual_location.setText("Hora: " + time + "\nLat: " + mLastLocation.getLatitude() + ", Long: " + mLastLocation.getLongitude());

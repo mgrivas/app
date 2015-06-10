@@ -9,7 +9,9 @@ import android.text.format.Time;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +32,10 @@ import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.healthmarketscience.jackcess.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ShowMapActivity extends com.example.mark.smi.Menu implements GoogleApiClient.ConnectionCallbacks,
@@ -67,7 +72,21 @@ public class ShowMapActivity extends com.example.mark.smi.Menu implements Google
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
                 .getMap();
 
+        ArrayList<String> valores = new ArrayList<String>();
+        try {
+            Database db = DatabaseBuilder.open(new File("/storage/sdcard0/Download/REAdb.mdb"));
+            Table table = db.getTable("Orense");
+            for(Column column : table.getColumns()) {
+                String columnName = column.getName();
+                valores.add(columnName);
+            }
 
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, valores);
+            ListView list = (ListView) findViewById(R.id.list_point);
+            list.setAdapter(adapter);
+        } catch (IOException e) {
+
+        }
 
         //Dibujar();
     }

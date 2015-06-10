@@ -40,6 +40,10 @@
     <string name="final_location">You\'ve been through ::</string>
     <string name="cancel_track">Cancel</string>
     <string name="accept_track">Accept</string>
+
+
+
+
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="track">Track</string>
