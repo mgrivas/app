@@ -21,13 +21,16 @@ public class SqlController extends SQLiteOpenHelper {
     public static final String COLUMN_HOUR = "hour";
     public static final String COLUMN_MINUTE = "minute";
 
-    public static final String TABLE_POLEN = "polen";
-    public static final String COLUMN_POLEN_ID = "_id";
-    public static final String COLUMN_POLEN_NAME = "name";
-    public static final String COLUMN_DESC = "description";
+    public static final String TABLE_ZONES = "zones";
+    public static final String COLUMN_ZONES_ID = "_id";
+    public static final String COLUMN_ZONES_NAME = "name";
+    public static final String COLUMN_ZONES_1 = "point1";
+    public static final String COLUMN_ZONES_2 = "point2";
+    public static final String COLUMN_ZONES_3 = "point3";
+    public static final String COLUMN_ZONES_4 = "point4";
 
     private static final String DATABASE_NAME = "smi.db";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     // Database creation sql statement
     private static final String DATABASE_CREATE_1 = "create table "
@@ -46,9 +49,13 @@ public class SqlController extends SQLiteOpenHelper {
             + " text not null );";
 
     private static final String DATABASE_CREATE_3 = "create table "
-            + TABLE_POLEN + "(" + COLUMN_POLEN_ID
-            + " integer primary key autoincrement, " + COLUMN_POLEN_NAME
-            + " text not null, " + COLUMN_COMMENTS + " );";
+            + TABLE_ZONES + "(" + COLUMN_ZONES_ID
+            + " integer primary key autoincrement, " + COLUMN_ZONES_NAME
+            + " text not null, " + COLUMN_ZONES_1
+            + " text not null, " + COLUMN_ZONES_2
+            + " text not null, " + COLUMN_ZONES_3
+            + " text not null, " + COLUMN_ZONES_4
+            + " text not null );";
 
     public SqlController(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -69,7 +76,7 @@ public class SqlController extends SQLiteOpenHelper {
                         + newVersion + ", which will destroy all old data");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TRACKS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_POINTS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_POLEN);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ZONES);
         onCreate(db);
     }
 }

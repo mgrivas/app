@@ -80,8 +80,8 @@
                 android:value=".MainController" />
         </activity>
         <activity
-            android:name=".ListActivity"
-            android:label="@string/title_activity_list"
+            android:name=".ListController"
+            android:label="@string/app_name"
             android:parentActivityName=".MainController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -117,9 +117,9 @@
                 android:value=".MainController" />
         </activity>
         <activity
-            android:name=".DetailedList"
+            android:name=".DetailedController"
             android:label="@string/title_activity_detailed_list"
-            android:parentActivityName=".ListActivity" >
+            android:parentActivityName=".ListController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainController" />

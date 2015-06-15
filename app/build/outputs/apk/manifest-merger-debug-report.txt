@@ -369,7 +369,7 @@ ADDED from AndroidManifest.xml:73:9
 		ADDED from AndroidManifest.xml:75:13
 	android:name
 		ADDED from AndroidManifest.xml:74:13
-activity#com.example.mark.smi.ListActivity
+activity#com.example.mark.smi.ListController
 ADDED from AndroidManifest.xml:82:9
 	android:label
 		ADDED from AndroidManifest.xml:84:13
@@ -407,7 +407,7 @@ ADDED from AndroidManifest.xml:111:9
 		ADDED from AndroidManifest.xml:114:13
 	android:name
 		ADDED from AndroidManifest.xml:112:13
-activity#com.example.mark.smi.DetailedList
+activity#com.example.mark.smi.DetailedController
 ADDED from AndroidManifest.xml:119:9
 	android:label
 		ADDED from AndroidManifest.xml:121:13

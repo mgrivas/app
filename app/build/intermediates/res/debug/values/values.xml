@@ -318,6 +318,7 @@
     <string name="decline">Decline</string>
     <!-- From: file:/C:/Users/Mark/AndroidStudioProjects/SMI/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="delete">Delete</string>
     <string name="final_location">You\'ve been through ::</string>
     <string name="gps_location">Your location is:</string>
     <string name="gps_wait">Please wait a few seconds, gps starting.</string>

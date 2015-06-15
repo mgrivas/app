@@ -40,6 +40,12 @@
     <string name="cancel_track">Cancelar</string>
     <string name="accept_track">Finalizar</string>
 
+    <!-- strings for the List activity -->
+    <string name="list_track_name">Recorridos existentes: </string>
+
+    <!-- strings for the Detailed activity -->
+    <string name="delete">Eliminar</string>
+
 
 
 
@@ -52,7 +58,7 @@
     <string name="not_get_location">(No se ha podido obtener la posición. Asegúrese de que la opción "permitir obtener mi posición" está
         activada en el dispositivo)</string>
     <string name="pollen">Polen a tu alrededor</string>
-    <string name="list_track_name">Recorridos existentes: </string>
+
 
 
 </resources>

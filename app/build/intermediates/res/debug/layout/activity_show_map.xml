@@ -2,30 +2,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
     tools:context=".ShowMapActivity"
-    android:orientation="vertical">
-
-    <fragment
-        android:id="@+id/map"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        class="com.google.android.gms.maps.MapFragment"
-        android:layout_weight="4"/>
-
-    <EditText android:id="@+id/EditTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Testeoooooo"
-        android:layout_weight="1"/>
+    android:orientation="horizontal">
 
     <ListView
         android:id="@+id/list_point"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:layout_weight="3"/>
+
+    <fragment
+        android:id="@+id/map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        class="com.google.android.gms.maps.MapFragment"
         android:layout_weight="1"/>
+
+
 
 </LinearLayout>
 <!-- From: file:/C:/Users/Mark/AndroidStudioProjects/SMI/app/src/main/res/layout/activity_show_map.xml -->

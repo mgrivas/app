@@ -22,7 +22,7 @@ public class MainController extends com.example.mark.smi.Menu{
 
     //When list tracks button pressed, Load the ListTrack activity
     public void ListTrack(View view) {
-        Intent intent = new Intent(this, ListActivity.class);
+        Intent intent = new Intent(this, ListController.class);
         startActivity(intent);
     }
 

@@ -41,6 +41,12 @@
     <string name="cancel_track">Cancel</string>
     <string name="accept_track">Accept</string>
 
+    <!-- strings for the List activity -->
+    <string name="list_track_name">Created tracks: </string>
+
+    <!-- strings for the Detailed activity -->
+    <string name="delete">Delete</string>
+
 
 
 
@@ -55,7 +61,7 @@
     <string name="title_activity_final_track">FinalTrack</string>
     <string name="title_activity_observer">Observer</string>
     <string name="pollen">Pollen at your sides</string>
-    <string name="list_track_name">Created tracks: </string>
+
     <string name="title_activity_detailed_list">DetailedList</string>
     <string name="title_activity_observer_mode">ObserverMode</string>
     <string name="title_activity_get_file">GetFile</string>

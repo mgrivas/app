@@ -68,6 +68,7 @@
     <string msgid="2429381841831957106" name="common_signin_button_text_long">"Iniciar sesión con Google"</string>
     <!-- From: file:/C:/Users/Mark/AndroidStudioProjects/SMI/app/src/main/res/values-es/strings.xml -->
     <eat-comment/>
+    <string name="delete">Eliminar</string>
     <string name="final_location">Has pasado por:</string>
     <string name="gps_location">Tu posición es:</string>
     <string name="gps_wait">Por favor espere unos segundos, configurando gps.</string>
