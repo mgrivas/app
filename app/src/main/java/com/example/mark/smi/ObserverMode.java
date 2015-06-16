@@ -18,7 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.List;
 
-//This activity is the controller for the activity_gps layout using Gps service
+//This activity is the controller for the activity_observer layout using Gps service
 public class ObserverMode extends com.example.mark.smi.Menu {
     GpsTracker gps;
 
@@ -104,17 +104,10 @@ public class ObserverMode extends com.example.mark.smi.Menu {
     public void stop(View view) {
         gps.stopUsingGPS();
 
-        Intent intent = new Intent(this, FinalTrackController.class);
-        //intent.putExtra(MESSAGE_NAME, name_selected);
-        //intent.putExtra(MESSAGE_COMMENT, comment_selected);
-        //intent.putParcelableArrayListExtra("points", points);
+        Intent intent = new Intent(this, MainController.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-
-    public void addPoint(Point point) {
-        points.add(point);
-    }
-
 
     public class GpsTracker extends Service implements LocationListener {
 
@@ -263,14 +256,14 @@ public class ObserverMode extends com.example.mark.smi.Menu {
 
         private boolean compareTimes(Point p) {
            int minute_alt;
+           int hora_alt;
             if (minuto_actual < 10) {
                 minute_alt = 10 - minuto_actual;
-                Toast.makeText(mContext, "" + minute_alt,
-                        Toast.LENGTH_SHORT).show();
                 minute_alt = 60 - minute_alt;
-                Toast.makeText(mContext, "" + minute_alt,
+                hora_alt = hora_actual - 1;
+                Toast.makeText(mContext, "PREVIA " + p.getHour() + " " + hora_alt,
                         Toast.LENGTH_SHORT).show();
-                if ((p.getHour() == hora_actual && p.getMinute() <= minuto_actual) || (p.getHour() == hora_actual - 1 && p.getMinute() >= minute_alt)) {
+                if ((p.getHour() == hora_actual && p.getMinute() <= minuto_actual && p.getMinute() <= 0) || (p.getHour() == hora_alt && p.getMinute() >= minute_alt && p.getMinute() <= 0)) {
                     Toast.makeText(mContext, "dentro",
                             Toast.LENGTH_SHORT).show();
                     return true;
@@ -299,6 +292,14 @@ public class ObserverMode extends com.example.mark.smi.Menu {
                 return true;
             }
             return false;
+        }
+
+        private boolean compareCoords(Point p) {
+            if (p.getLatitude()-latitude <=00.001000 && p.getLongitude() - longitude <= 00.001000) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         //What to do when the location change
@@ -336,7 +337,9 @@ public class ObserverMode extends com.example.mark.smi.Menu {
                         if (compareTimes(point)){
                             Toast.makeText(mContext, "Punto encontrado",
                                     Toast.LENGTH_SHORT).show();
-                            if (point.getLatitude() == latitude && point.getLongitude() == longitude) {
+                            if (compareCoords(point)) {
+                                Toast.makeText(mContext, "Coordenadas encontradas",
+                                        Toast.LENGTH_SHORT).show();
                                 flag_accept = 1;
                             }
                         } else {
@@ -348,14 +351,18 @@ public class ObserverMode extends com.example.mark.smi.Menu {
                         count += 1;
                         Toast.makeText(mContext, "Fuera de lugar \nAviso: " + count,
                                 Toast.LENGTH_SHORT).show();
+                        if (count == 3) {
+                                gps.stopUsingGPS();
+
+                                Intent intent = new Intent(mContext, MainController.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                        }
                     } else {
                         Toast.makeText(mContext, "Todo correcto \nAvisos: " + count,
                                 Toast.LENGTH_SHORT).show();
                     }
 
-
-                    Point punto = new Point(latitude, longitude, today.hour,today.minute);
-                    addPoint(punto);
                     actual_location.setText("Hora: " + time + "\nLat: " + latitude + ", Long: " + longitude);
                     flag_accept = 0;
                 } else {

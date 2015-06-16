@@ -28,7 +28,7 @@ public class Observer extends com.example.mark.smi.Menu {
 
         final List<Track> values = sql.getAllTracks();
 
-        ArrayAdapter<Track> adapter = new ArrayAdapter<Track>(this, android.R.layout.simple_list_item_1, values);
+        ArrayAdapter<Track> adapter = new ArrayAdapter<Track>(this, R.layout.list_layout_tracks, values);
         ListView list = (ListView) findViewById(R.id.list);
         list.setAdapter(adapter);
 

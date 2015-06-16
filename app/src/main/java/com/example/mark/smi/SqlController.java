@@ -24,13 +24,11 @@ public class SqlController extends SQLiteOpenHelper {
     public static final String TABLE_ZONES = "zones";
     public static final String COLUMN_ZONES_ID = "_id";
     public static final String COLUMN_ZONES_NAME = "name";
-    public static final String COLUMN_ZONES_1 = "point1";
-    public static final String COLUMN_ZONES_2 = "point2";
-    public static final String COLUMN_ZONES_3 = "point3";
-    public static final String COLUMN_ZONES_4 = "point4";
+    public static final String COLUMN_ZONES_LATITUDE = "latitude";
+    public static final String COLUMN_ZONES_LONGITUDE = "longitude";
 
     private static final String DATABASE_NAME = "smi.db";
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 7;
 
     // Database creation sql statement
     private static final String DATABASE_CREATE_1 = "create table "
@@ -51,10 +49,8 @@ public class SqlController extends SQLiteOpenHelper {
     private static final String DATABASE_CREATE_3 = "create table "
             + TABLE_ZONES + "(" + COLUMN_ZONES_ID
             + " integer primary key autoincrement, " + COLUMN_ZONES_NAME
-            + " text not null, " + COLUMN_ZONES_1
-            + " text not null, " + COLUMN_ZONES_2
-            + " text not null, " + COLUMN_ZONES_3
-            + " text not null, " + COLUMN_ZONES_4
+            + " text not null, " + COLUMN_ZONES_LATITUDE
+            + " text not null, " + COLUMN_ZONES_LONGITUDE
             + " text not null );";
 
     public SqlController(Context context) {
@@ -67,6 +63,14 @@ public class SqlController extends SQLiteOpenHelper {
         database.execSQL(DATABASE_CREATE_1);
         database.execSQL(DATABASE_CREATE_2);
         database.execSQL(DATABASE_CREATE_3);
+        database.execSQL("INSERT INTO " + TABLE_ZONES + " (" + COLUMN_ZONES_NAME + ", " + COLUMN_ZONES_LATITUDE + ", " + COLUMN_ZONES_LONGITUDE + ") VALUES ('Orense', " + 42.335789 + ", " + -7.863881 + " ) ");
+        database.execSQL("INSERT INTO " + TABLE_ZONES + " (" + COLUMN_ZONES_NAME + ", " + COLUMN_ZONES_LATITUDE + ", " + COLUMN_ZONES_LONGITUDE + ") VALUES ('A Coruña', " + 43.362344 + ", " + -8.411540 + " ) ");
+        database.execSQL("INSERT INTO " + TABLE_ZONES + " (" + COLUMN_ZONES_NAME + ", " + COLUMN_ZONES_LATITUDE + ", " + COLUMN_ZONES_LONGITUDE + ") VALUES ('Lugo', " + 43.009738 + ", " + -7.556758 + " ) ");
+        database.execSQL("INSERT INTO " + TABLE_ZONES + " (" + COLUMN_ZONES_NAME + ", " + COLUMN_ZONES_LATITUDE + ", " + COLUMN_ZONES_LONGITUDE + ") VALUES ('Santiago', " + 42.878213 + ", " + -8.544844 + " ) ");
+        database.execSQL("INSERT INTO " + TABLE_ZONES + " (" + COLUMN_ZONES_NAME + ", " + COLUMN_ZONES_LATITUDE + ", " + COLUMN_ZONES_LONGITUDE + ") VALUES ('Trives', " + 42.345768 + ", " + -7.257700 + " ) ");
+        database.execSQL("INSERT INTO " + TABLE_ZONES + " (" + COLUMN_ZONES_NAME + ", " + COLUMN_ZONES_LATITUDE + ", " + COLUMN_ZONES_LONGITUDE + ") VALUES ('Verin', " + 41.940259 + ", " + -7.434953 + " ) ");
+        database.execSQL("INSERT INTO " + TABLE_ZONES + " (" + COLUMN_ZONES_NAME + ", " + COLUMN_ZONES_LATITUDE + ", " + COLUMN_ZONES_LONGITUDE + ") VALUES ('Vigo', " + 42.240599 + ", " + -8.720727 + " ) ");
+        database.execSQL("INSERT INTO " + TABLE_ZONES + " (" + COLUMN_ZONES_NAME + ", " + COLUMN_ZONES_LATITUDE + ", " + COLUMN_ZONES_LONGITUDE + ") VALUES ('Viveiro', " + 43.664265 + ", " + -7.594535 + " ) ");
     }
 
     @Override

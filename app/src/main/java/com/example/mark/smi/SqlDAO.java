@@ -26,9 +26,10 @@ public class SqlDAO {
             SqlController.COLUMN_HOUR,
             SqlController.COLUMN_MINUTE };
 
-    private String[] allColumns_polen = { SqlController.COLUMN_POLEN_ID,
-            SqlController.COLUMN_POLEN_NAME,
-            SqlController.COLUMN_DESC };
+    private String[] allColumns_zones = { SqlController.COLUMN_ZONES_ID,
+            SqlController.COLUMN_ZONES_NAME,
+            SqlController.COLUMN_ZONES_LATITUDE,
+            SqlController.COLUMN_ZONES_LONGITUDE };
 
     public SqlDAO(Context context) {
         dbHelper = new SqlController(context);
@@ -72,27 +73,6 @@ public class SqlDAO {
 
     }
 
-    /*public void createPoint(Point point) {
-        ContentValues values = new ContentValues();
-        values.put(SqlController.COLUMN_LATITUDE, point.getLatitude());
-        values.put(SqlController.COLUMN_LONGITUDE, point.getLongitude());
-        long insertId = database.insert(SqlController.TABLE_COMMENTS, null,
-                values);
-        Cursor cursor = database.query(SqlController.TABLE_COMMENTS,
-                allColumns, SqlController.COLUMN_ID + " = " + insertId, null,
-                null, null, null);
-        cursor.moveToFirst();
-        Comment newComment = cursorToComment(cursor);
-        cursor.close();
-    }
-
-    public void deleteComment(Comment comment) {
-        long id = comment.getId();
-        System.out.println("Comment deleted with id: " + id);
-        database.delete(SqlController.TABLE_COMMENTS, SqlController.COLUMN_ID
-                + " = " + id, null);
-    }*/
-
     public void deleteTrack(Track track) {
         int id = track.getId();
         database.delete(SqlController.TABLE_TRACKS,SqlController.COLUMN_ID + " = " + id,null);
@@ -122,6 +102,26 @@ public class SqlDAO {
         return tracks;
     }
 
+    public List<Zone> getAllZones() {
+        //Creamos la lista que vamos a devolver
+        List<Zone> zones = new ArrayList<Zone>();
+
+        //Creamos el cursor sobre la consulta con todos los recorridos
+        Cursor cursor = database.query(SqlController.TABLE_ZONES,
+                allColumns_zones, null, null, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Zone zone = cursorToZone(cursor);
+            zones.add(zone);
+            cursor.moveToNext();
+        }
+        // make sure to close the cursor
+        cursor.close();
+        return zones;
+    }
+
+    /*
     public List<Point> getAllPoints() {
         //Creamos la lista que vamos a devolver
         List<Point> points = new ArrayList<Point>();
@@ -139,7 +139,7 @@ public class SqlDAO {
         // make sure to close the cursor
         cursor.close();
         return points;
-    }
+    } */
 
     public List<Point> getPoints(int id) {
         //Creamos la lista que vamos a devolver
@@ -175,11 +175,18 @@ public class SqlDAO {
         return track;
     }
 
+    private Zone cursorToZone(Cursor cursor) {
+        Zone zone = new Zone(cursor.getString(1),cursor.getDouble(2),cursor.getDouble(3));
+        zone.setId(cursor.getInt(0));
+        return zone;
+    }
+
+    /*
     public int getLastTrack() {
         int id;
         Cursor cursor = database.rawQuery("SELECT * FROM tracks WHERE _id = (SELECT IDENT_CURRENT('tracks'))",null);
         cursor.moveToFirst();
         id = cursor.getInt(0);
         return id;
-    }
+    } */
 }

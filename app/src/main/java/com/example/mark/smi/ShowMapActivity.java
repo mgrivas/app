@@ -11,6 +11,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.text.format.Time;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,7 +31,12 @@ import com.healthmarketscience.jackcess.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 //This activity is the controller for the activity_gps layout using Gps service
 public class ShowMapActivity extends com.example.mark.smi.Menu {
@@ -38,7 +44,7 @@ public class ShowMapActivity extends com.example.mark.smi.Menu {
     private GoogleMap map;
 
     //Global variables
-    private String name_selected;
+    private String name;
     private String comment_selected;
     private TextView actual_location;
     public final static String MESSAGE_NAME = "com.example.mark.smi.MESSAGE_NAME";
@@ -47,6 +53,8 @@ public class ShowMapActivity extends com.example.mark.smi.Menu {
     public ArrayList<Point> points;
     //Flag to check if it's the first time to get the location
     private int flag = 0;
+    List<Zone> zones;
+    Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +77,7 @@ public class ShowMapActivity extends com.example.mark.smi.Menu {
 
         ArrayList<String> valores = new ArrayList<String>();
         try {
-            Database db = DatabaseBuilder.open(new File("/storage/sdcard0/Download/REAdb.mdb"));
+            db = DatabaseBuilder.open(new File("/storage/sdcard0/Download/REAdb.mdb"));
             Table table = db.getTable("Orense");
             for (Column column : table.getColumns()) {
                 String columnName = column.getName();
@@ -79,6 +87,11 @@ public class ShowMapActivity extends com.example.mark.smi.Menu {
             valores.remove(0);
             valores.remove(valores.size() - 1);
 
+            SqlDAO sql = new SqlDAO(this);
+            sql.open();
+
+            zones = sql.getAllZones();
+
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, valores);
             ListView list = (ListView) findViewById(R.id.list_point);
             list.setAdapter(adapter);
@@ -86,7 +99,8 @@ public class ShowMapActivity extends com.example.mark.smi.Menu {
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                   Dibujar();
+                    extractData();
+                   //Dibujar();
                 }
             });
 
@@ -95,12 +109,68 @@ public class ShowMapActivity extends com.example.mark.smi.Menu {
         }
     }
 
-    public void Dibujar() {
+    private void extractData() {
+        try {
+            Table table_zone = db.getTable(name);
+            Cursor cursor = CursorBuilder.createCursor(table_zone);
+            String string_date = "01-Jan-2001";
+            Date d = new Date();
+            long milliseconds = 0;
+
+            SimpleDateFormat f = new SimpleDateFormat("dd-MMM-yyyy");
+            try {
+                d = (Date) f.parse("01-January-2001");
+                milliseconds = d.getTime();
+
+            } catch (ParseException e) {
+
+            }
+
+            Date date = new Date(milliseconds);
+            boolean found = cursor.findFirstRow(table_zone.getColumn("Alnu"),39);
+            if (found) {
+                Toast.makeText(getApplicationContext(), "Se ha encontrado la fecha!!!",
+                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Valor: " + cursor.getCurrentRowValue(table_zone.getColumn("Fecha")),
+                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Fecha a probar: " + d,
+                        Toast.LENGTH_SHORT).show();
+
+            }
+        } catch (IOException e) {
+
+        }
+    }
+
+    public void Draw(Location loc) {
         // Instantiates a new Polyline object and adds points to define a rectangle
         Polygon polygon = map.addPolygon(new PolygonOptions()
-                .add(new LatLng(53.558, 9.927), new LatLng(53.568, 9.927), new LatLng(53.568, 9.937))
-                .strokeColor(Color.RED)
-                .fillColor(Color.BLUE));
+                .add(new LatLng(loc.getLatitude() - 0.1, loc.getLongitude() - 0.1), new LatLng(loc.getLatitude() + 0.1, loc.getLongitude() - 0.1), new LatLng(loc.getLatitude() + 0.1, loc.getLongitude() + 0.1), new LatLng(loc.getLatitude() - 0.1, loc.getLongitude() + 0.1))
+                .strokeWidth(0)
+                .fillColor(0x55f40743));
+    }
+
+    private void selectZone(){
+        double x = 100;
+        double y = 100;
+        name = "nothing";
+
+        //Eliminate the negative numbers
+        for (Zone zone : zones) {
+            zone.setLatitude(Math.abs(zone.getLatitude()));
+            zone.setLongitude(Math.abs(zone.getLongitude()));
+            }
+
+        for (Zone zone : zones) {
+            if ((x > Math.abs(gps.getLatitude() - zone.getLatitude())) && (y > Math.abs(gps.getLongitude() - zone.getLongitude()))) {
+                x = gps.getLatitude() - zone.getLatitude();
+                y = gps.getLongitude() - zone.getLongitude();
+                name = zone.getName();
+            }
+        }
+
+        Toast.makeText(getApplicationContext(), "Zona final: " + name,
+                Toast.LENGTH_SHORT).show();
     }
 
     public class GpsTracker extends Service implements android.location.LocationListener {
@@ -249,7 +319,8 @@ public class ShowMapActivity extends com.example.mark.smi.Menu {
         //What to do when the location change
         @Override
         public void onLocationChanged(Location location) {
-
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
             Toast.makeText(mContext, "Location changed!",
                     Toast.LENGTH_SHORT).show();
 
@@ -261,6 +332,9 @@ public class ShowMapActivity extends com.example.mark.smi.Menu {
 
             // Zoom in, animating the camera.
             map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+
+            selectZone();
+            Draw(location);
         }
 
         @Override
