@@ -26,7 +26,8 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:text="@string/name"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="#0d47a1"/>
 
     <EditText android:id="@+id/edit_name"
         android:layout_width="match_parent"
@@ -67,8 +68,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_custom"
-        android:text="@string/nextGoogle"
-        android:onClick="nextGoogle"/>
+        android:text="@string/manually"
+        android:onClick="nextManual"/>
 
         <!-- Button: new track using gps -->
         <Button android:id="@+id/button_start_gps"

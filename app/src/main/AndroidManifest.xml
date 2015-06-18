@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mark.smi" >
+    package="com.esei.mgrivas.polenalert" >
 
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="21" />
 
     <permission
-        android:name="com.example.mark.smi.permission.MAPS_RECEIVE"
+        android:name="com.esei.mgrivas.polenalert.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
     <uses-feature
@@ -29,8 +29,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
+        android:name="com.esei.mgrivas.polenalert.GlobalClass"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -43,7 +45,7 @@
 
         <!-- Main activity -->
         <activity
-            android:name=".MainController"
+            android:name=".controllers.MainController"
             android:configChanges="locale|orientation"
             android:label="@string/app_name" >
             <intent-filter>
@@ -53,47 +55,47 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".NewTrackController"
+            android:name=".controllers.NewTrackController"
             android:configChanges="locale|orientation"
             android:label="@string/app_name"
-            android:parentActivityName=".MainController" >
+            android:parentActivityName=".controllers.MainController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".NewTrackController" />
+                android:value=".controllers.NewTrackController" />
         </activity>
         <activity
-            android:name=".GoogleController"
+            android:name="com.esei.mgrivas.polenalert.GoogleController"
             android:configChanges="locale|orientation"
             android:label="@string/app_name"
-            android:parentActivityName=".NewTrackController" >
+            android:parentActivityName=".controllers.NewTrackController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".GoogleController" />
+                android:value="com.esei.mgrivas.polenalert.GoogleController" />
         </activity>
         <activity
-            android:name=".GpsController"
+            android:name=".controllers.GpsController"
             android:configChanges="locale|orientation"
             android:label="@string/app_name"
-            android:parentActivityName=".NewTrackController" >
+            android:parentActivityName=".controllers.NewTrackController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainController" />
+                android:value=".controllers.MainController" />
         </activity>
         <activity
-            android:name=".ListController"
+            android:name=".controllers.ListController"
             android:label="@string/app_name"
-            android:parentActivityName=".MainController" >
+            android:parentActivityName=".controllers.MainController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainController" />
+                android:value=".controllers.MainController" />
         </activity>
         <activity
-            android:name=".ShowMapActivity"
+            android:name=".controllers.ShowMapActivity"
             android:label="Mapa"
-            android:parentActivityName=".MainController" >
+            android:parentActivityName=".controllers.MainController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainController" />
+                android:value=".controllers.MainController" />
         </activity>
 
         <meta-data
@@ -101,40 +103,44 @@
             android:value="AIzaSyCSdndvwfByswyzuQTWXvI4puC5_e3WQ0o" />
 
         <activity
-            android:name=".FinalTrackController"
+            android:name=".controllers.FinalTrackController"
             android:label="@string/title_activity_final_track"
-            android:parentActivityName=".GoogleController" >
+            android:parentActivityName="com.esei.mgrivas.polenalert.GoogleController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainController" />
+                android:value=".controllers.MainController" />
         </activity>
         <activity
-            android:name=".Observer"
+            android:name=".controllers.ObserverListController"
             android:label="@string/title_activity_observer"
-            android:parentActivityName=".MainController" >
+            android:parentActivityName=".controllers.MainController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainController" />
+                android:value=".controllers.MainController" />
         </activity>
         <activity
-            android:name=".DetailedController"
+            android:name=".controllers.DetailedController"
             android:label="@string/title_activity_detailed_list"
-            android:parentActivityName=".ListController" >
+            android:parentActivityName=".controllers.ListController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainController" />
+                android:value=".controllers.MainController" />
         </activity>
         <activity
-            android:name=".ObserverMode"
+            android:name=".controllers.ObserverMode"
             android:label="@string/title_activity_observer_mode"
-            android:parentActivityName=".Observer" >
+            android:parentActivityName=".controllers.ObserverListController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainController" />
+                android:value=".controllers.MainController" />
         </activity>
         <activity
-            android:name=".GetFile"
+            android:name="com.esei.mgrivas.polenalert.GetFile"
             android:label="@string/title_activity_get_file" >
+        </activity>
+        <activity
+            android:name=".controllers.ManualController"
+            android:label="@string/title_activity_manual_controller" >
         </activity>
     </application>
 

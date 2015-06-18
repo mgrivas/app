@@ -76,6 +76,7 @@
     <string name="lang_tittle">Elija el idioma:</string>
     <string name="list_track">Listar Recorridos</string>
     <string name="list_track_name">Recorridos existentes: </string>
+    <string name="manually">Crear manualmente -></string>
     <!-- From: file:/C:/Users/Mark/AndroidStudioProjects/SMI/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/res/values-es/values.xml -->
     <eat-comment/>
     <string msgid="8327680881775995150" name="mr_media_route_button_content_description">"Enviar contenido"</string>
@@ -96,7 +97,6 @@
     <string name="newtrack_comments">Comentarios:</string>
     <string name="newtrack_date">Fecha comienzo:</string>
     <string name="newtrack_hour">Hora comienzo:</string>
-    <string name="nextGoogle">Usar Google Services -></string>
     <string name="nextGps">Usar Gps -></string>
     <string name="not_get_location">(No se ha podido obtener la posición. Asegúrese de que la opción "permitir obtener mi posición" está
         activada en el dispositivo)</string>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mark.smi.test">
+    package="com.esei.mgrivas.polenalert.test">
 
     <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="21" />
 
@@ -9,8 +9,8 @@
     </application>
 
     <instrumentation android:name="android.test.InstrumentationTestRunner"
-                     android:targetPackage="com.example.mark.smi"
+                     android:targetPackage="com.esei.mgrivas.polenalert"
                      android:handleProfiling="false"
                      android:functionalTest="false"
-                     android:label="Tests for com.example.mark.smi"/>
+                     android:label="Tests for com.esei.mgrivas.polenalert"/>
 </manifest>

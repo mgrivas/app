@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.example.mark.smi"
+        applicationId "com.esei.mgrivas.polenalert"
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 1

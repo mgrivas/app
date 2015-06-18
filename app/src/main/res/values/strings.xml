@@ -23,7 +23,7 @@
     <!-- strings for the NewTrack activity -->
     <string name="name">Name:</string>
     <string name="newtrack_comments">Comments:</string>
-    <string name="nextGoogle">Use Google Services -></string>
+    <string name="manually">Create manually -></string>
     <string name="nextGps">Use Gps -></string>
     <string name="name_empty">The name value can\'t be empty</string>
 
@@ -46,10 +46,6 @@
 
     <!-- strings for the Detailed activity -->
     <string name="delete">Delete</string>
-
-
-
-
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="track">Track</string>
@@ -61,9 +57,9 @@
     <string name="title_activity_final_track">FinalTrack</string>
     <string name="title_activity_observer">Observer</string>
     <string name="pollen">Pollen at your sides</string>
-
     <string name="title_activity_detailed_list">DetailedList</string>
     <string name="title_activity_observer_mode">ObserverMode</string>
     <string name="title_activity_get_file">GetFile</string>
+    <string name="title_activity_manual_controller">ManualController</string>
 
 </resources>

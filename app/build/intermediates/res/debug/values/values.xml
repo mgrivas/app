@@ -326,6 +326,7 @@
     <string name="lang_tittle">Choose the language:</string>
     <string name="list_track">List Tracks</string>
     <string name="list_track_name">Created tracks: </string>
+    <string name="manually">Create manually -></string>
     <!-- From: file:/C:/Users/Mark/AndroidStudioProjects/SMI/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
     <string name="mr_media_route_button_content_description">Cast</string>
@@ -346,7 +347,6 @@
     <string name="newtrack_comments">Comments:</string>
     <string name="newtrack_date">Start Date:</string>
     <string name="newtrack_hour">Start Hour:</string>
-    <string name="nextGoogle">Use Google Services -></string>
     <string name="nextGps">Use Gps -></string>
     <string name="not_get_location">(Couldn\'t get the location. Make sure location is enabled on the device)</string>
     <string name="not_supported">This device is not supported by Google Play Services.</string>
@@ -366,6 +366,7 @@
     <string name="title_activity_final_track">FinalTrack</string>
     <string name="title_activity_get_file">GetFile</string>
     <string name="title_activity_list">ListActivity</string>
+    <string name="title_activity_manual_controller">ManualController</string>
     <string name="title_activity_observer">Observer</string>
     <string name="title_activity_observer_mode">ObserverMode</string>
     <string name="title_activity_show_map">ShowMapActivity</string>

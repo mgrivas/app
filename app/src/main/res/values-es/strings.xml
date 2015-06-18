@@ -22,7 +22,7 @@
     <!-- strings for the NewTrack activity -->
         <string name="name">Nombre:</string>
         <string name="newtrack_comments">Comentarios:</string>
-        <string name="nextGoogle">Usar Google Services -></string>
+        <string name="manually">Crear manualmente -></string>
         <string name="nextGps">Usar Gps -></string>
         <string name="name_empty">El campo nombre no puede estar vacío</string>
 
