@@ -7,16 +7,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.esei.mgrivas.polenalert.Point;
+import com.esei.mgrivas.polenalert.Support.Menu;
+import com.esei.mgrivas.polenalert.entities.Point;
 import com.esei.mgrivas.polenalert.R;
-import com.esei.mgrivas.polenalert.SqlDAO;
-import com.esei.mgrivas.polenalert.Track;
-import com.esei.mgrivas.polenalert.controllers.ListController;
+import com.esei.mgrivas.polenalert.Support.SqlDAO;
+import com.esei.mgrivas.polenalert.entities.Track;
 
 import java.util.List;
 
-//This activity is the controller for the detailed activity
-public class DetailedController extends com.esei.mgrivas.polenalert.Menu {
+//This activity is the controller for the detailed_list activity
+public class DetailedController extends Menu {
     private String name_selected;
     private String comment_selected;
     List<Point> points;
@@ -52,6 +52,15 @@ public class DetailedController extends com.esei.mgrivas.polenalert.Menu {
         ListView list = (ListView) findViewById(R.id.list_point);
         list.setAdapter(adapter);
 
+    }
+
+    //Hide the language option in the menu
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        menu.findItem(R.id.action_language).setVisible(false);
+        return true;
     }
 
     //If the user press Cancel we go back to the List activity

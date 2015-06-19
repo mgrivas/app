@@ -16,12 +16,14 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.esei.mgrivas.polenalert.Point;
+
+import com.esei.mgrivas.polenalert.Support.Menu;
+import com.esei.mgrivas.polenalert.entities.Point;
 import com.esei.mgrivas.polenalert.R;
 import java.util.ArrayList;
 
 //This activity is the controller for the activity_gps layout using Gps service
-public class GpsController extends com.esei.mgrivas.polenalert.Menu {
+public class GpsController extends Menu {
     GpsTracker gps;
 
     //Global variables
@@ -55,6 +57,15 @@ public class GpsController extends com.esei.mgrivas.polenalert.Menu {
             // leads to the settings because there is no last known location
             showSettingsAlert();
         }
+    }
+
+    //Hide the language option in the menu
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        menu.findItem(R.id.action_language).setVisible(false);
+        return true;
     }
 
     private void setVariables() {

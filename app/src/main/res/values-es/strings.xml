@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- strings to name the app and activities -->
-        <string name="app_name">SMI</string>
+        <string name="app_name">Polen Alert</string>
 
     <!-- strings for language -->
         <string name="action_language">Idioma</string>
@@ -28,6 +28,7 @@
 
     <!-- strings for the GpsController activity -->
     <string name="gps_location">Tu posición es:</string>
+    <string name="next">Siguiente -></string>
     <string name="not_supported">El dispositivo no posee Google Play Services.</string>
     <string name="still_activating">Gps aún activándose, vuelva a intentarlo otra vez.</string>
     <string name="paused">Recorrido pausado.</string>
@@ -42,6 +43,12 @@
 
     <!-- strings for the List activity -->
     <string name="list_track_name">Recorridos existentes: </string>
+    <string name="created">creado </string>
+    <string name="to_hour">Hora:</string>
+    <string name="point">Punto:</string>
+    <string name="latitude">latitud</string>
+    <string name="longitude">longitud</string>
+    <string name="and">y</string>
 
     <!-- strings for the Detailed activity -->
     <string name="delete">Eliminar</string>

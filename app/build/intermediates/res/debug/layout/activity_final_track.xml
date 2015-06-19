@@ -27,13 +27,15 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="@string/name"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="#0d47a1"/>
 
         <TextView android:id="@+id/final_name_selected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="30dp"
-            android:paddingRight="30dp" />
+            android:paddingRight="30dp"
+            android:textColor="#0d47a1"/>
 
         <!-- TextViews to show the comment wrote -->
         <TextView android:id="@+id/final_comments"
@@ -43,13 +45,15 @@
             android:paddingRight="20dp"
             android:paddingTop="5dp"
             android:text="@string/newtrack_comments"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="#0d47a1"/>
 
         <TextView android:id="@+id/final_comment_selected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="30dp"
-            android:paddingRight="30dp" />
+            android:paddingRight="30dp"
+            android:textColor="#0d47a1"/>
 
         <TextView android:id="@+id/final_location"
             android:layout_width="wrap_content"
@@ -57,14 +61,16 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="@string/final_location"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="#0d47a1"/>
 
         <ListView
             android:id="@+id/list_point"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:paddingLeft="30dp"
-            android:paddingRight="30dp" />
+            android:paddingRight="30dp"
+            android:textColor="#0d47a1"/>
 
     </LinearLayout>
 

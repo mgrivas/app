@@ -14,7 +14,8 @@ import android.text.format.Time;
 import android.view.View;
 import android.widget.Toast;
 
-import com.esei.mgrivas.polenalert.Point;
+import com.esei.mgrivas.polenalert.Support.Menu;
+import com.esei.mgrivas.polenalert.entities.Point;
 import com.esei.mgrivas.polenalert.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,7 +27,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 
 
-public class ManualController extends com.esei.mgrivas.polenalert.Menu {
+public class ManualController extends Menu {
 
     GpsTracker gps;
     private GoogleMap map;

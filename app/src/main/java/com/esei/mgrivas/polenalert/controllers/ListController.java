@@ -8,13 +8,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.esei.mgrivas.polenalert.R;
-import com.esei.mgrivas.polenalert.SqlDAO;
-import com.esei.mgrivas.polenalert.Track;
+import com.esei.mgrivas.polenalert.Support.SqlDAO;
+import com.esei.mgrivas.polenalert.Support.Menu;
+import com.esei.mgrivas.polenalert.entities.Track;
 
 import java.util.List;
 
 
-public class ListController extends com.esei.mgrivas.polenalert.Menu {
+public class ListController extends Menu {
     private SqlDAO sql;
 
     @Override

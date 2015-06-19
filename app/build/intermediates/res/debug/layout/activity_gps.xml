@@ -27,13 +27,15 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="@string/name"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="#0d47a1"/>
 
         <TextView android:id="@+id/gps_name_selected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="30dp"
-            android:paddingRight="30dp" />
+            android:paddingRight="30dp"
+            android:textColor="#0d47a1"/>
 
         <!-- TextViews to show the comment wrote -->
         <TextView android:id="@+id/gps_comments"
@@ -43,13 +45,15 @@
             android:paddingRight="20dp"
             android:paddingTop="5dp"
             android:text="@string/newtrack_comments"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="#0d47a1"/>
 
         <TextView android:id="@+id/gps_comment_selected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="30dp"
-            android:paddingRight="30dp" />
+            android:paddingRight="30dp"
+            android:textColor="#0d47a1"/>
 
         <TextView android:id="@+id/gps_location"
             android:layout_width="wrap_content"
@@ -57,13 +61,15 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="@string/gps_location"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="#0d47a1"/>
 
         <TextView android:id="@+id/gps_location_selected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="30dp"
-            android:paddingRight="30dp" />
+            android:paddingRight="30dp"
+            android:textColor="#0d47a1"/>
 
      </LinearLayout>
 

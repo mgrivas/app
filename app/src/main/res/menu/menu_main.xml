@@ -10,6 +10,6 @@
 
     <!-- Button for email -->
     <item android:id="@+id/action_email" android:title="@string/action_language"
-        android:icon="@drawable/ic_action_language"
+        android:icon="@drawable/ic_action_email"
         android:orderInCategory="100" app:showAsAction="ifRoom" />
 </menu>

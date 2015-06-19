@@ -8,9 +8,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.esei.mgrivas.polenalert.R;
+import com.esei.mgrivas.polenalert.Support.Menu;
 
 //This activity is the controller for the activity_new_track layout
-public class NewTrackController extends com.esei.mgrivas.polenalert.Menu {
+public class NewTrackController extends Menu {
 
     //Variables to handle de views and intent extras
     EditText name;

@@ -4,9 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import com.esei.mgrivas.polenalert.R;
+import com.esei.mgrivas.polenalert.Support.Menu;
 
 //This activity is the controller for the activity_main layout
-public class MainController extends com.esei.mgrivas.polenalert.Menu{
+public class MainController extends Menu {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class MainController extends com.esei.mgrivas.polenalert.Menu{
 
     //When show button pressed, Load the ShowMap activity
     public void ShowMap(View view) {
-        Intent intent = new Intent(this, ShowMapActivity.class);
+        Intent intent = new Intent(this, PollenMapController.class);
         startActivity(intent);
     }
 

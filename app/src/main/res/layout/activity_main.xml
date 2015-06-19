@@ -23,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_custom"
+            android:textAllCaps="false"
             android:text="@string/new_track"
             android:onClick="NewTrack"/>
 
@@ -32,6 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@drawable/button_custom"
+            android:textAllCaps="false"
             android:text="@string/observer"
             android:onClick="Observer"/>
 
@@ -41,6 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@drawable/button_custom"
+            android:textAllCaps="false"
             android:text="@string/list_track"
             android:onClick="ListTrack"/>
 
@@ -50,6 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@drawable/button_custom"
+            android:textAllCaps="false"
             android:text="@string/show_map"
             android:onClick="ShowMap"/>
 

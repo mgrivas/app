@@ -6,4 +6,5 @@
     android:paddingBottom="3dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textSize="17sp" />
+    android:textSize="17sp"
+    android:textColor="#0d47a1"/>

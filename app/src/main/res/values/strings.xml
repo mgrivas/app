@@ -2,7 +2,7 @@
 <resources>
 
     <!-- string to name of the app and activities -->
-    <string name="app_name">SMI</string>
+    <string name="app_name">Polen Alert</string>
 
     <!-- strings for language -->
     <string name="lang_tittle">Choose the language:</string>
@@ -32,6 +32,7 @@
     <string name="not_supported">This device is not supported by Google Play Services.</string>
     <string name="still_activating">Gps still starting, refresh this screen.</string>
     <string name="paused">Track paused.</string>
+    <string name="next">Next -></string>
     <string name="ready">Gps ready. Please press start.</string>
     <string name="changed">Location changed!</string>
     <string name="gps_wait">Please wait a few seconds, gps starting.</string>
@@ -43,6 +44,12 @@
 
     <!-- strings for the List activity -->
     <string name="list_track_name">Created tracks: </string>
+    <string name="created">created</string>
+    <string name="to_hour">Hour:</string>
+    <string name="point">Point:</string>
+    <string name="latitude">latitude</string>
+    <string name="longitude">longitude</string>
+    <string name="and">and</string>
 
     <!-- strings for the Detailed activity -->
     <string name="delete">Delete</string>

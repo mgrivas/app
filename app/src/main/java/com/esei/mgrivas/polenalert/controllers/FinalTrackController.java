@@ -8,17 +8,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.esei.mgrivas.polenalert.GoogleController;
-import com.esei.mgrivas.polenalert.Point;
+import com.esei.mgrivas.polenalert.Support.Menu;
+import com.esei.mgrivas.polenalert.entities.Point;
 import com.esei.mgrivas.polenalert.R;
-import com.esei.mgrivas.polenalert.SqlDAO;
-import com.esei.mgrivas.polenalert.Track;
-import com.esei.mgrivas.polenalert.controllers.MainController;
+import com.esei.mgrivas.polenalert.Support.SqlDAO;
+import com.esei.mgrivas.polenalert.entities.Track;
 
 import java.util.List;
 
 //This activity is the controller for the activity_main layout
-public class FinalTrackController extends com.esei.mgrivas.polenalert.Menu {
+public class FinalTrackController extends Menu {
     private String name_selected;
     private String comment_selected;
     List<Point> points;
@@ -32,11 +31,11 @@ public class FinalTrackController extends com.esei.mgrivas.polenalert.Menu {
 
         //First we recieve the intent and set the variables
         Intent intent = getIntent();
-        name_selected = intent.getStringExtra(GoogleController.MESSAGE_NAME);
+        name_selected = intent.getStringExtra(GpsController.MESSAGE_NAME);
         TextView textView = (TextView) findViewById(R.id.final_name_selected);
         textView.setText(name_selected);
 
-        comment_selected = intent.getStringExtra(GoogleController.MESSAGE_COMMENT);
+        comment_selected = intent.getStringExtra(GpsController.MESSAGE_COMMENT);
         TextView textView2 = (TextView) findViewById(R.id.final_comment_selected);
         textView2.setText(comment_selected);
 
@@ -49,6 +48,15 @@ public class FinalTrackController extends com.esei.mgrivas.polenalert.Menu {
         //open the database connection
         sql = new SqlDAO(this);
         sql.open();
+    }
+
+    //Hide the language option in the menu
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        menu.findItem(R.id.action_language).setVisible(false);
+        return true;
     }
 
     //If cancel pressed go back to gps
@@ -72,7 +80,7 @@ public class FinalTrackController extends com.esei.mgrivas.polenalert.Menu {
         track.setComment(comment_selected);
         Time today = new Time(Time.getCurrentTimezone());
         today.setToNow();
-        String date = today.monthDay + " / " + today.month;
+        String date = today.monthDay + " / " + (today.month+1);
         track.setDate(date);
 
         track = sql.createTrack(track);

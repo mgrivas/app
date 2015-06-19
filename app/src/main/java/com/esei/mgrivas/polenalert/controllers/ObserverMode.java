@@ -19,17 +19,17 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.esei.mgrivas.polenalert.GlobalClass;
-import com.esei.mgrivas.polenalert.Point;
+import com.esei.mgrivas.polenalert.Support.GlobalClass;
+import com.esei.mgrivas.polenalert.Support.Menu;
+import com.esei.mgrivas.polenalert.entities.Point;
 import com.esei.mgrivas.polenalert.R;
-import com.esei.mgrivas.polenalert.SqlDAO;
-import com.esei.mgrivas.polenalert.Track;
-import com.esei.mgrivas.polenalert.controllers.MainController;
+import com.esei.mgrivas.polenalert.Support.SqlDAO;
+import com.esei.mgrivas.polenalert.entities.Track;
 
 import java.util.List;
 
 //This activity is the controller for the activity_observer layout using Gps service
-public class ObserverMode extends com.esei.mgrivas.polenalert.Menu {
+public class ObserverMode extends Menu {
     GpsTracker gps;
 
     //Global variables
