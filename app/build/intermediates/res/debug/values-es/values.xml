@@ -113,6 +113,7 @@
     <string name="ready">Gps listo. Por favor pulse start.</string>
     <string name="show_map">Mostrar Mapa de Polen</string>
     <string name="still_activating">Gps aún activándose, vuelva a intentarlo otra vez.</string>
+    <string name="title_activity_detailed_list">Polen Alert</string>
     <string name="to_hour">Hora:</string>
     <string name="track">Recorrido</string>
     <!-- From: file:/C:/Users/Mark/AndroidStudioProjects/SMI/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.5.0/res/values-es/wallet_strings.xml -->

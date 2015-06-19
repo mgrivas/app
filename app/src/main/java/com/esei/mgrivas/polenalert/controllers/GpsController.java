@@ -109,6 +109,13 @@ public class GpsController extends Menu {
     public void stop(View view) {
         gps.stopUsingGPS();
 
+        ImageButton btn_stop = (ImageButton)findViewById(R.id.newtrack_stop);
+        btn_stop.setImageResource(R.drawable.ic_action_stop_false);
+        ImageButton btn_pause = (ImageButton)findViewById(R.id.newtrack_pause);
+        btn_pause.setImageResource(R.drawable.ic_action_pause_false);
+        ImageButton btn_start = (ImageButton)findViewById(R.id.newtrack_play);
+        btn_start.setImageResource(R.drawable.ic_action_play);
+
         Intent intent = new Intent(this, FinalTrackController.class);
         intent.putExtra(MESSAGE_NAME, name_selected);
         intent.putExtra(MESSAGE_COMMENT, comment_selected);

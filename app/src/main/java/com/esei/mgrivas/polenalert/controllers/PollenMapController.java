@@ -120,6 +120,15 @@ public class PollenMapController extends Menu {
         }
     }
 
+    //Hide the language option in the menu
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        menu.findItem(R.id.action_language).setVisible(false);
+        return true;
+    }
+
     public void showSettingsAlert(){
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 
@@ -159,26 +168,6 @@ public class PollenMapController extends Menu {
             calendar.set(Calendar.HOUR_OF_DAY,0);
             calendar.set(Calendar.MILLISECOND,0);
 
-            Date d = new Date();
-            Date date2 = new Date();
-            /*long milliseconds = 0;
-
-            SimpleDateFormat f = new SimpleDateFormat("dd-MMM-yyyy");
-            try {
-                d = (Date) f.parse("01-January-2001");
-                milliseconds = d.getTime();
-
-            } catch (ParseException e) {
-
-            }*/
-
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
-            try {
-                date2 = sdf.parse("01/01/2001");
-            }catch (ParseException e) {
-
-            }
-            int min = 0;
             int max = 0;
             Date date = new Date(calendar.getTimeInMillis());
             for (Row row : table_zone) {
@@ -188,14 +177,8 @@ public class PollenMapController extends Menu {
             }
             boolean found = cursor.findFirstRow(table_zone.getColumn("Fecha"),new java.sql.Timestamp(date.getTime()));
             if (found) {
-                Toast.makeText(getApplicationContext(), "Se ha encontrado la fecha!!!",
-                        Toast.LENGTH_SHORT).show();
                 value = (Integer) cursor.getCurrentRowValue(table_zone.getColumn(polen));
                 Toast.makeText(getApplicationContext(), "Valor: " + value,
-                        Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), "El menor es: " + min,
-                        Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), "El mayor es: " + max,
                         Toast.LENGTH_SHORT).show();
                 if (value < ((max*30)/100) || value == 0) {
                     color = 0x5561cc1e; //green
@@ -204,8 +187,6 @@ public class PollenMapController extends Menu {
                 } else {
                     color = 0x55f40743; //red
                 }
-                Toast.makeText(getApplicationContext(), "Fecha: " + date,
-                        Toast.LENGTH_SHORT).show();
 
             }
         } catch (IOException e) {
@@ -247,7 +228,7 @@ public class PollenMapController extends Menu {
             }
         }
 
-        Toast.makeText(getApplicationContext(), "Zona final: " + name,
+        Toast.makeText(getApplicationContext(), "" + name,
                 Toast.LENGTH_SHORT).show();
     }
 
@@ -351,7 +332,6 @@ public class PollenMapController extends Menu {
                 latitude = location.getLatitude();
             }
 
-            // return latitude
             return latitude;
         }
 
@@ -362,8 +342,10 @@ public class PollenMapController extends Menu {
             return longitude;
         }
 
-        public boolean canGetLocation() {
-            return this.canGetLocation;
+        @Override
+        public void onDestroy() {
+            super.onDestroy();
+            stopUsingGPS();
         }
 
         //What to do when the location change

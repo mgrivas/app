@@ -63,6 +63,9 @@ public class ManualController extends Menu {
         name_selected = intent.getStringExtra(NewTrackController.MESSAGE_NAME);
         comment_selected = intent.getStringExtra(NewTrackController.MESSAGE_COMMENT);
 
+        Time today = new Time(Time.getCurrentTimezone());
+        today.setToNow();
+
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 
             @Override
@@ -75,11 +78,9 @@ public class ManualController extends Menu {
                             Toast.LENGTH_SHORT).show();
                     Time today = new Time(Time.getCurrentTimezone());
                     today.setToNow();
-                    minute = Math.round(today.minute);
+                    minute = today.minute;
                     hour = today.hour;
-                    Point p = new Point(loc.latitude,loc.longitude,today.hour,today.minute);
-                    addPoint(p);
-                    Toast.makeText(getApplicationContext(), "Minuto actual: " + today.minute + " y miniuto mas 3: " + minute,
+                    Toast.makeText(getApplicationContext(), "Hora: " + hour + " y minuto: " + minute,
                             Toast.LENGTH_SHORT).show();
                     previa.setLatitude(loc.latitude);
                     previa.setLongitude(loc.longitude);
@@ -90,10 +91,8 @@ public class ManualController extends Menu {
                     float tiempo = distance() / 166;
                     Time today = new Time(Time.getCurrentTimezone());
                     today.setToNow();
-                    minute = today.minute;
-                    hour = today.hour;
                     if ((minute + tiempo) >= 60) {
-                        minute = 60 - today.minute;
+                        minute = 60 - minute;
                         minute = tiempo - minute;
                         minute = 0 + minute;
                         if (today.hour == 24) {
@@ -104,8 +103,7 @@ public class ManualController extends Menu {
                     } else {
                         minute = minute + tiempo;
                     }
-                    Point p = new Point(loc.latitude,loc.longitude,hour,Math.round(minute));
-                    addPoint(p);
+
                     map.clear();
                     map.addMarker(new MarkerOptions().position(loc).title("Actual"));
                     // TODO Auto-generated method stub
@@ -117,6 +115,8 @@ public class ManualController extends Menu {
                     previa.setLongitude(loc.longitude);
                     flag = 1;
                 }
+                Point p = new Point(loc.latitude,loc.longitude,hour,Math.round(minute));
+                addPoint(p);
             }
         });
 
@@ -143,6 +143,15 @@ public class ManualController extends Menu {
         intent.putExtra(MESSAGE_COMMENT, comment_selected);
         intent.putParcelableArrayListExtra("points", points);
         startActivity(intent);
+    }
+
+    //Hide the language option in the menu
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        menu.findItem(R.id.action_language).setVisible(false);
+        return true;
     }
 
     public void showSettingsAlert(){
@@ -178,8 +187,6 @@ public class ManualController extends Menu {
     }
 
     private float distance() {
-
-
         return previa.distanceTo(actual);
     }
 
@@ -296,6 +303,12 @@ public class ManualController extends Menu {
 
         public boolean canGetLocation() {
             return this.canGetLocation;
+        }
+
+        @Override
+        public void onDestroy() {
+            super.onDestroy();
+            stopUsingGPS();
         }
 
         //What to do when the location change

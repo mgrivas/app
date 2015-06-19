@@ -65,6 +65,7 @@
     <string name="not_get_location">(No se ha podido obtener la posición. Asegúrese de que la opción "permitir obtener mi posición" está
         activada en el dispositivo)</string>
     <string name="pollen">Polen a tu alrededor</string>
+    <string name="title_activity_detailed_list">Polen Alert</string>
 
 
 

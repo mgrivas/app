@@ -72,6 +72,15 @@ public class ObserverMode extends Menu {
         }
     }
 
+    //Hide the language option in the menu
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        menu.findItem(R.id.action_language).setVisible(false);
+        return true;
+    }
+
     private void setVariables() {
         Intent intent = getIntent();
         track = (Track) intent.getExtras().getSerializable("track");
@@ -112,12 +121,13 @@ public class ObserverMode extends Menu {
 
     public void sendEmail() {
         final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
-        Intent intent = new Intent(Intent.ACTION_SENDTO); // it's not ACTION_SEND
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Subject of email");
-        intent.putExtra(Intent.EXTRA_TEXT, "Body of email");
-        intent.setData(Uri.parse("mailto:" + globalVariable.getEmail())); // or just "mailto:" for blank
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // this will make such that when user returns to your app, your app is displayed, instead of the email app.
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Polen Alert: Fuera de ruta");
+        intent.putExtra(Intent.EXTRA_TEXT, "El usuario del dispositivo se ha salido por 3 vez de la ruta. El ultimo " +
+                "punto registrado es: latitud: " + gps.latitude + " y longitud: " + gps.longitude);
+        intent.setData(Uri.parse("mailto:" + globalVariable.getEmail()));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
@@ -282,11 +292,7 @@ public class ObserverMode extends Menu {
                 minute_alt = 10 - minuto_actual;
                 minute_alt = 60 - minute_alt;
                 hora_alt = hora_actual - 1;
-                Toast.makeText(mContext, "PREVIA " + p.getHour() + " " + hora_alt,
-                        Toast.LENGTH_SHORT).show();
                 if ((p.getHour() == hora_actual && p.getMinute() <= minuto_actual && p.getMinute() <= 0) || (p.getHour() == hora_alt && p.getMinute() >= minute_alt && p.getMinute() <= 0)) {
-                    Toast.makeText(mContext, "dentro",
-                            Toast.LENGTH_SHORT).show();
                     return true;
                 } else {
                     return false;
@@ -295,14 +301,8 @@ public class ObserverMode extends Menu {
 
             if (minuto_actual > 50) {
                 minute_alt = 60 - minuto_actual;
-                Toast.makeText(mContext, "" + minute_alt,
-                        Toast.LENGTH_SHORT).show();
                 minute_alt = 10 - minute_alt;
-                Toast.makeText(mContext, "" + minute_alt,
-                        Toast.LENGTH_SHORT).show();
                 if ((p.getHour() == hora_actual && p.getMinute() >= minuto_actual) || (p.getHour() == hora_actual + 1 && p.getMinute() <= minute_alt)) {
-                    Toast.makeText(mContext, "dentro",
-                            Toast.LENGTH_SHORT).show();
                     return true;
                 } else {
                     return false;
@@ -321,6 +321,12 @@ public class ObserverMode extends Menu {
             } else {
                 return false;
             }
+        }
+
+        @Override
+        public void onDestroy() {
+            super.onDestroy();
+            stopUsingGPS();
         }
 
         //What to do when the location change
@@ -349,17 +355,14 @@ public class ObserverMode extends Menu {
                         hora = "0" + today.hour;
                     }
                     String time = hora + ":" + minuto;
-                    String time2 = hora + ":" + minuto;
 
                     minuto_actual = today.minute;
                     hora_actual = today.hour;
 
                     for (Point point : points) {
                         if (compareTimes(point) && compareCoords(point)){
-                            Toast.makeText(mContext, "Hora encontrada",
-                                    Toast.LENGTH_SHORT).show();
                             if (compareCoords(point)) {
-                                Toast.makeText(mContext, "Coordenadas encontradas",
+                                Toast.makeText(mContext, "Match",
                                         Toast.LENGTH_SHORT).show();
                                 flag_accept = 1;
                             }
@@ -370,10 +373,8 @@ public class ObserverMode extends Menu {
 
                     for (Point point : points) {
                         if (compareCoords(point) && compareCoords(point)){
-                            Toast.makeText(mContext, "Coordenadas encontradas",
-                                    Toast.LENGTH_SHORT).show();
                             if (compareTimes(point)) {
-                                Toast.makeText(mContext, "Hora encontrada",
+                                Toast.makeText(mContext, "Match",
                                         Toast.LENGTH_SHORT).show();
                                 flag_accept = 1;
                             }
@@ -384,12 +385,12 @@ public class ObserverMode extends Menu {
 
                     if (flag_accept == 0) {
                         count += 1;
-                        Toast.makeText(mContext, "Fuera de lugar \nAviso: " + count,
+                        Toast.makeText(mContext, "Aviso: " + count,
                                 Toast.LENGTH_SHORT).show();
                         if (count == 2) {
                             Vibrator v = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
-                            // Vibrate for 500 milliseconds
-                            v.vibrate(500);
+                            // Vibrate for 1 sec
+                            v.vibrate(1000);
                         }
                         if (count == 3) {
                                 gps.stopUsingGPS();
@@ -397,7 +398,7 @@ public class ObserverMode extends Menu {
                                 sendEmail();
                         }
                     } else {
-                        Toast.makeText(mContext, "Todo correcto \nAvisos: " + count,
+                        Toast.makeText(mContext, "Todo correcto: ",
                                 Toast.LENGTH_SHORT).show();
                     }
 

@@ -372,14 +372,7 @@
     <string name="store_picture_title">Save image</string>
     <!-- From: file:/C:/Users/Mark/AndroidStudioProjects/SMI/app/src/main/res/values/strings.xml -->
     <eat-comment/>
-    <string name="title_activity_detailed_list">DetailedList</string>
-    <string name="title_activity_final_track">FinalTrack</string>
-    <string name="title_activity_get_file">GetFile</string>
-    <string name="title_activity_list">ListActivity</string>
-    <string name="title_activity_manual_controller">ManualController</string>
-    <string name="title_activity_observer">Observer</string>
-    <string name="title_activity_observer_mode">ObserverMode</string>
-    <string name="title_activity_show_map">ShowMapActivity</string>
+    <string name="title_activity_detailed_list">Polen Alert</string>
     <string name="to_hour">Hour:</string>
     <string name="track">Track</string>
     <!-- From: file:/C:/Users/Mark/AndroidStudioProjects/SMI/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.5.0/res/values/wallet_strings.xml -->
