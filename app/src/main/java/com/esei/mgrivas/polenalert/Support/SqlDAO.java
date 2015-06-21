@@ -9,8 +9,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.esei.mgrivas.polenalert.Support.SqlController;
 import com.esei.mgrivas.polenalert.entities.Point;
+import com.esei.mgrivas.polenalert.entities.Polen;
 import com.esei.mgrivas.polenalert.entities.Track;
 import com.esei.mgrivas.polenalert.entities.Zone;
 
@@ -35,6 +35,10 @@ public class SqlDAO {
             SqlController.COLUMN_ZONES_NAME,
             SqlController.COLUMN_ZONES_LATITUDE,
             SqlController.COLUMN_ZONES_LONGITUDE };
+
+    private String[] allColumns_polen = { SqlController.COLUMN_POLEN_ID,
+            SqlController.COLUMN_POLEN_NAME,
+            SqlController.COLUMN_POLEN_MAX };
 
     public SqlDAO(Context context) {
         dbHelper = new SqlController(context);
@@ -126,6 +130,25 @@ public class SqlDAO {
         return zones;
     }
 
+    public List<Polen> getAllPolen() {
+        //Creamos la lista que vamos a devolver
+        List<Polen> polen_list = new ArrayList<Polen>();
+
+        //Creamos el cursor sobre la consulta con todos los recorridos
+        Cursor cursor = database.query(SqlController.TABLE_POLEN,
+                allColumns_polen, null, null, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Polen polen = cursorToPolen(cursor);
+            polen_list.add(polen);
+            cursor.moveToNext();
+        }
+        // make sure to close the cursor
+        cursor.close();
+        return polen_list;
+    }
+
     /*
     public List<Point> getAllPoints() {
         //Creamos la lista que vamos a devolver
@@ -184,6 +207,11 @@ public class SqlDAO {
         Zone zone = new Zone(cursor.getString(1),cursor.getDouble(2),cursor.getDouble(3));
         zone.setId(cursor.getInt(0));
         return zone;
+    }
+
+    private Polen cursorToPolen(Cursor cursor) {
+        Polen polen = new Polen(cursor.getString(0),cursor.getString(1),cursor.getInt(2));
+        return polen;
     }
 
     /*

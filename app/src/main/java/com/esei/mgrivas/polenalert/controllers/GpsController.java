@@ -177,7 +177,7 @@ public class GpsController extends Menu {
         private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 0; // off
 
         // The minimum time between updates in milliseconds
-        private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
+        private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 5; // 5 minute
 
         // Declaring a Location Manager
         protected LocationManager locationManager;

@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.EditText;
 
-import com.esei.mgrivas.polenalert.Support.GlobalClass;
-
 public class EmailDialogFragment extends DialogFragment {
 
     public EmailDialogFragment() {

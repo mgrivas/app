@@ -22,6 +22,7 @@ import com.esei.mgrivas.polenalert.Support.Menu;
 import com.esei.mgrivas.polenalert.entities.Point;
 import com.esei.mgrivas.polenalert.R;
 import com.esei.mgrivas.polenalert.Support.SqlDAO;
+import com.esei.mgrivas.polenalert.entities.Polen;
 import com.esei.mgrivas.polenalert.entities.Zone;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -35,8 +36,6 @@ import com.healthmarketscience.jackcess.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -48,18 +47,16 @@ public class PollenMapController extends Menu {
     private GoogleMap map;
     Marker now;
     LatLng actual;
+    private SqlDAO sql;
 
     //Global variables
     private String name;
-    private String comment_selected;
-    private TextView actual_location;
-    public final static String MESSAGE_NAME = "com.example.mark.smi.MESSAGE_NAME";
-    public final static String MESSAGE_COMMENT = "com.example.mark.smi.MESSAGE_COMMENT";
 
     public ArrayList<Point> points;
     //Flag to check if it's the first time to get the location
     private int flag = 0;
     List<Zone> zones;
+    List<Polen> polen_list;
     Database db;
     Polygon polygon;
     int value;
@@ -80,44 +77,41 @@ public class PollenMapController extends Menu {
             showSettingsAlert();
         }
 
+        sql = new SqlDAO(this);
+        sql.open();
+
         color = 0;
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
                 .getMap();
         map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
 
-        final ArrayList<String> valores = new ArrayList<String>();
+        polen_list = sql.getAllPolen();
         try {
             db = DatabaseBuilder.open(new File("/storage/sdcard0/Download/REAdb.mdb"));
-            Table table = db.getTable("Orense");
-            for (Column column : table.getColumns()) {
-                String columnName = column.getName();
-                valores.add(columnName);
-            }
-            valores.remove(0);
-            valores.remove(0);
-            valores.remove(valores.size() - 1);
 
-            SqlDAO sql = new SqlDAO(this);
-            sql.open();
+        } catch (IOException e) {
 
+        }
             zones = sql.getAllZones();
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, valores);
+            ArrayAdapter<Polen> adapter = new ArrayAdapter<Polen>(this, android.R.layout.simple_list_item_1, polen_list);
             ListView list = (ListView) findViewById(R.id.list_point);
             list.setAdapter(adapter);
+
+            list.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                     RemoveDraw();
-                    extractData(valores.get(position));
+                    extractData(polen_list.get(position));
                    //Dibujar();
                 }
             });
 
-        } catch (IOException e) {
+            list.setSelector(android.R.color.holo_blue_dark);
 
-        }
+
     }
 
     //Hide the language option in the menu
@@ -157,8 +151,9 @@ public class PollenMapController extends Menu {
         alertDialog.show();
     }
 
-    private void extractData(String polen) {
+    private void extractData(Polen type) {
         try {
+            String polen = type.getName();
             Table table_zone = db.getTable(name);
             Cursor cursor = CursorBuilder.createCursor(table_zone);
             Time today = new Time(Time.getCurrentTimezone());
@@ -168,13 +163,8 @@ public class PollenMapController extends Menu {
             calendar.set(Calendar.HOUR_OF_DAY,0);
             calendar.set(Calendar.MILLISECOND,0);
 
-            int max = 0;
+            int max = type.getMax();
             Date date = new Date(calendar.getTimeInMillis());
-            for (Row row : table_zone) {
-                if (((Integer) row.get(polen)) > (max)) {
-                    max = (Integer) row.get(polen);
-                }
-            }
             boolean found = cursor.findFirstRow(table_zone.getColumn("Fecha"),new java.sql.Timestamp(date.getTime()));
             if (found) {
                 value = (Integer) cursor.getCurrentRowValue(table_zone.getColumn(polen));
@@ -215,10 +205,10 @@ public class PollenMapController extends Menu {
         name = "nothing";
 
         //Eliminate the negative numbers
-        for (Zone zone : zones) {
+        /*for (Zone zone : zones) {
             zone.setLatitude(Math.abs(zone.getLatitude()));
             zone.setLongitude(Math.abs(zone.getLongitude()));
-            }
+            }*/
 
         for (Zone zone : zones) {
             if ((x > Math.abs(gps.getLatitude() - zone.getLatitude())) && (y > Math.abs(gps.getLongitude() - zone.getLongitude()))) {

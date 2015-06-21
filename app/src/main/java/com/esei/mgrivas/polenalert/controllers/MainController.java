@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import com.esei.mgrivas.polenalert.R;
 import com.esei.mgrivas.polenalert.Support.Menu;
+import com.esei.mgrivas.polenalert.Support.SqlDAO;
 
 //This activity is the controller for the activity_main layout
 public class MainController extends Menu {

@@ -163,7 +163,7 @@ public class ObserverMode extends Menu {
         private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 0; // 10 meters
 
         // The minimum time between updates in milliseconds
-        private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
+        private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 5; // 5 minute
 
         // Declaring a Location Manager
         protected LocationManager locationManager;
@@ -288,8 +288,8 @@ public class ObserverMode extends Menu {
         private boolean compareTimes(Point p) {
            int minute_alt;
            int hora_alt;
-            if (minuto_actual < 10) {
-                minute_alt = 10 - minuto_actual;
+            if (minuto_actual <= 7) {
+                minute_alt = 7 - minuto_actual;
                 minute_alt = 60 - minute_alt;
                 hora_alt = hora_actual - 1;
                 if ((p.getHour() == hora_actual && p.getMinute() <= minuto_actual && p.getMinute() <= 0) || (p.getHour() == hora_alt && p.getMinute() >= minute_alt && p.getMinute() <= 0)) {
@@ -299,7 +299,7 @@ public class ObserverMode extends Menu {
                 }
             }
 
-            if (minuto_actual > 50) {
+            if (minuto_actual >= 53) {
                 minute_alt = 60 - minuto_actual;
                 minute_alt = 10 - minute_alt;
                 if ((p.getHour() == hora_actual && p.getMinute() >= minuto_actual) || (p.getHour() == hora_actual + 1 && p.getMinute() <= minute_alt)) {

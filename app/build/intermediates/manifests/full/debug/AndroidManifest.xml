@@ -60,7 +60,7 @@
             android:parentActivityName="com.esei.mgrivas.polenalert.controllers.MainController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.NewTrackController" />
+                android:value="com.esei.mgrivas.polenalert.controllers.NewTrackController" />
         </activity>
         <activity
             android:name="com.esei.mgrivas.polenalert.controllers.GpsController"
@@ -69,7 +69,7 @@
             android:parentActivityName="com.esei.mgrivas.polenalert.controllers.NewTrackController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.MainController" />
+                android:value="com.esei.mgrivas.polenalert.controllers.MainController" />
         </activity>
         <activity
             android:name="com.esei.mgrivas.polenalert.controllers.ListController"
@@ -77,7 +77,7 @@
             android:parentActivityName="com.esei.mgrivas.polenalert.controllers.MainController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.MainController" />
+                android:value="com.esei.mgrivas.polenalert.controllers.MainController" />
         </activity>
         <activity
             android:name="com.esei.mgrivas.polenalert.controllers.PollenMapController"
@@ -85,12 +85,12 @@
             android:parentActivityName="com.esei.mgrivas.polenalert.controllers.MainController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.MainController" />
+                android:value="com.esei.mgrivas.polenalert.controllers.MainController" />
         </activity>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyC8ssk5Lc_Llw9G9Sst3AyRjQ-Nlr5bZdk" />
+            android:value="AIzaSyC1eX_Tqty5vwQ5vXciYjnDG9_1MEz8_BE" />
 
         <activity
             android:name="com.esei.mgrivas.polenalert.controllers.FinalTrackController"
@@ -98,7 +98,7 @@
             android:parentActivityName="com.esei.mgrivas.polenalert.controllers.GpsController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.MainController" />
+                android:value="com.esei.mgrivas.polenalert.controllers.MainController" />
         </activity>
         <activity
             android:name="com.esei.mgrivas.polenalert.controllers.ObserverListController"
@@ -106,7 +106,7 @@
             android:parentActivityName="com.esei.mgrivas.polenalert.controllers.MainController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.MainController" />
+                android:value="com.esei.mgrivas.polenalert.controllers.MainController" />
         </activity>
         <activity
             android:name="com.esei.mgrivas.polenalert.controllers.DetailedController"
@@ -114,7 +114,7 @@
             android:parentActivityName="com.esei.mgrivas.polenalert.controllers.ListController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.MainController" />
+                android:value="com.esei.mgrivas.polenalert.controllers.MainController" />
         </activity>
         <activity
             android:name="com.esei.mgrivas.polenalert.controllers.ObserverMode"
@@ -122,7 +122,7 @@
             android:parentActivityName="com.esei.mgrivas.polenalert.controllers.ObserverListController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.MainController" />
+                android:value="com.esei.mgrivas.polenalert.controllers.MainController" />
         </activity>
         <activity
             android:name="com.esei.mgrivas.polenalert.controllers.ManualController"
@@ -130,7 +130,7 @@
             android:parentActivityName="com.esei.mgrivas.polenalert.controllers.MainController" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controllers.MainController" />
+                android:value="com.esei.mgrivas.polenalert.controllers.MainController" />
         </activity>
         <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
         <activity

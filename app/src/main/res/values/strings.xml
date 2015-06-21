@@ -2,7 +2,7 @@
 <resources>
 
     <!-- string to name of the app and activities -->
-    <string name="app_name">Polen Alert</string>
+    <string name="app_name">Route Polen Alert</string>
 
     <!-- strings for language -->
     <string name="lang_tittle">Choose the language:</string>
